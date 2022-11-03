@@ -207,5 +207,4 @@ func sum15(type: Int)->(Int,Int)->(Int){
     return type == 0 ? addition : subtraction
 }
 
-
 print("嵌套函数:\(sum15(type: 1)(1,2))")

@@ -43,6 +43,7 @@ print("\(date.year)年\(date.month)月\(date.day)日")
 fun = add
 let result = fun(1,20)
 print("result:\(result)")
+
 /**
  result:21
  */
