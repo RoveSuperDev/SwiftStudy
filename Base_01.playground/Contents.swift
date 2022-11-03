@@ -6,12 +6,14 @@ for index in 0...nameArray.count - 1{
 }
 
 
+// 前开 后闭 写法    1 <= 取值范围 < 10
 let startIndex = 1
 let EndIndex = 10
 for index in startIndex ..< EndIndex{
     print(index)
 }
 
+//可以使用 _ 省略
 for _ in 1..<10{
     print("***")
 }
@@ -40,24 +42,63 @@ print(numberRange1.contains(100) ? "在该范围" : "不在该范围")
 
 let stringRange1 = "AA"..."FF";
 
-print("============")
+
+/**
+ name:张三
+ name:李四
+ name:王麻子
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ ***
+ ***
+ ***
+ ***
+ ***
+ ***
+ ***
+ ***
+ ***
+ 在该范围
+ */
+
+print("====================================")
 
 if stringRange1.contains("BC"){
     print("YES")
 }
-print("============")
+/**
+ YES
+ */
+print("====================================")
 if stringRange1.contains("CF"){
     print("YES")
 }
-
-print("============")
+/**
+ YES
+ */
+print("====================================")
 
 //带间隔区间取值 stride 从 1 开始 到 11 结束 每次加 2
 for number in stride(from: 1, through: 11, by: 2)
 {
     print(number)
 }
-print("============")
+/**
+ 1
+ 3
+ 5
+ 7
+ 9
+ 11
+ */
+print("====================================")
 
 let numberArray = [1,20,3,40,50,5,10]
 
@@ -65,24 +106,52 @@ for number in numberArray[1...]
 {
     print(number)
 }
-print("============")
+/**
+ 20
+ 3
+ 40
+ 50
+ 5
+ 10
+ */
+print("====================================")
 
 for number in numberArray[...3]
 {
     print(number)
 }
-print("============")
+/**
+ 1
+ 20
+ 3
+ 40
+ */
+print("====================================")
 for number in numberArray[0...3]
 {
     print(number)
 }
-print("============")
+/**
+ 1
+ 20
+ 3
+ 40
+ */
+print("====================================")
 for number in numberArray[0...numberArray.count-1]
 {
     print(number)
 }
-
-print("============")
+/**
+ 1
+ 20
+ 3
+ 40
+ 50
+ 5
+ 10
+ */
+print("====================================")
 
 let index = 1
 //不需要写 break 默认并不会贯穿 如果需要贯穿可以加入 fallthrough
@@ -96,8 +165,10 @@ case 3:
 default :
     print("Not Found")
 }
-
-print("============")
+/**
+ 1
+ */
+print("====================================")
 
 let index2 = 1
 //不需要写 break 默认并不会贯穿 如果需要贯穿可以加入 fallthrough
@@ -111,7 +182,10 @@ case 3:
 default :
     print("Not Found")
 }
-print("============")
+/**
+ 2
+ */
+print("====================================")
 
 //fallthrough 进行贯穿 switch case 之后必须有 default 如果能保证处理了所有情况 那么可以不需要 default。例如 枚举
 switch index{
@@ -127,7 +201,13 @@ case 3:
 default :
     print("Not Found")
 }
-print("============")
+/**
+ 1
+ 2
+ 3
+ Not Found
+ */
+print("====================================")
 
 
 enum CustomType {case A,B}
@@ -139,8 +219,10 @@ case CustomType.A:
 case CustomType.B:
     print("B")
 }
-
-print("============")
+/**
+ A
+ */
+print("====================================")
 
 let name = "张三"
 switch name{
@@ -149,8 +231,11 @@ case "张三":
 default:
     print("Not Found")
 }
+/**
+ 张三
+ */
 //使用 , 包含多个值
-print("============")
+print("====================================")
 let index3 = 2
 switch index3{
 case 1,2,3:
@@ -158,8 +243,10 @@ case 1,2,3:
 default:
     print("Not Found")
 }
-
-print("============")
+/**
+ 1、2、3
+ */
+print("====================================")
 
 //使用区间匹配
 let index4 = -10
@@ -175,7 +262,10 @@ case 101..<200:
 default:
     print("大于等于200")
 }
-print("============")
+/**
+ 小于等于 1
+ */
+print("====================================")
 
 
 let point = (1,1)
@@ -187,8 +277,12 @@ case let(x,y) where x == y:
 default:
     break
 }
+/**
+ ====================================
+ Point X :1
+ */
 
-print("============")
+print("====================================")
 
 // where 过滤
 let numberArray2 = [-1,20,-20,2,3,44]
@@ -197,9 +291,13 @@ for numbe1 in numberArray2 where numbe1 > 0{
     sum += numbe1
 }
 print("sum:\(sum)")
-print("============")
+/**
+ sum:69
+ */
 
-//==================函数====================
+print("====================================")
+
+//==========================================函数============================================
 //函数的形参是 let
 
 /// 带参数和返回值的函数
@@ -216,11 +314,62 @@ func sum1(number1:Int,number2:Int) -> Int {
     number1 + number2
 }
 
+// 函数不带返回值 Void、() 或者不写
 func sum2(number1:Int,number2:Int) -> Void {
     print(number1 + number2)
 }
-
-func sum3(number1:Int,number2:Int) -> () {
+func sum3(number1:Int,number2:Int){
+    print(number1 + number2)
+}
+func sum4(number1:Int,number2:Int) -> () {
     print(number1 + number2)
 }
 
+sum4(number1:10,number2:20)
+
+/// 参数 标签 参数别名
+/// - Parameter number1: xx
+func sum5(num number1:Int){
+    print("传入参数：\(number1)")
+}
+
+sum5(num: 10)
+/**
+ 传入参数：10
+ */
+
+print("====================================")
+
+// 使用 _ 来可以省略标签
+func sum6(_ num1: Int,_ num2: Int)->Int{
+    num1 + num2
+}
+sum6(20, 30)
+
+
+//默认参数
+
+func sum7(number1: Int = 10,number2:Int){
+    print("number1:\(number1) number2:\(number2) ")
+}
+
+sum7(number1: 11 ,number2: 20)
+sum7(number2: 30)
+/**
+ number1:11 number2:20
+ number1:10 number2:30
+ */
+
+print("====================================")
+
+// inout 传入 参数的地址 可以让参数可以被修改
+var number8 = 10
+func sum8(num:inout Int){
+    num = 200
+}
+sum8(num: &number8)
+print("number8:\(number8)")
+/**
+ number8:200
+ */
+print("====================================")
