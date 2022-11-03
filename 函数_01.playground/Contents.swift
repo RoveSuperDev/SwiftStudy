@@ -96,6 +96,10 @@ func sum9(numberArray: Int ...)
 }
 sum9(numberArray: 10,20,30,40)
 
+/**
+ sum1:100
+ sum2:100
+ */
 print("====================================")
 
 // 可变参数 后面的参数标签不能省略，可变参数的标签可以省略
@@ -109,5 +113,99 @@ func sum10(_ numberArray: Int...,name:String){
 }
 sum10(10,2,3,4,5, name: "哈哈哈")
 
+/**
+ name->哈哈哈 sum:24
+ */
+
+print("====================================")
+//重载 会优先选择最佳匹配函数即 func sum11(_ num1: Int,_ num2: Int)
+
+func sum11(_ numberArray: Int...){
+    var sum = 0
+    for tempNum in numberArray{
+        sum += tempNum
+    }
+    print("sum:\(sum)")
+}
+
+sum11(10,20)
+
+/**
+ sum:30
+ */
+
 print("====================================")
 
+// 函数类型作为函数 参数类型
+
+func sum12(_ fun:(Int,Int)->Int,_ number1: Int,_ number2: Int)->Int{
+    return fun(number1,number2)
+}
+print(sum12(sum6, 10, 20))
+
+/**
+ 30
+ */
+
+print("====================================")
+
+//函数类型当作类型
+
+var funname1:(Int,Int)->(Int)
+
+var funname2:(Int,Int)->()
+
+var funname3:()->()
+
+func sum13(_ fun:(Int,Int)->Int,_ number1: Int,_ number2: Int)->Int{
+    return fun(number1,number2)
+}
+
+//函数类型当作返回值类型
+
+func subtraction(_ num1: Int,_ num2: Int)->(Int){
+    num1 - num2
+}
+
+func addition(_ num1: Int,_ num2: Int)->(Int){
+    num1 + num2
+}
+
+
+func sum14(type: Int)->(Int,Int)->(Int){
+    if type == 0{
+        return addition
+    }else{
+        return subtraction
+    }
+}
+
+
+let result1 = sum14(type: 0)(10,20)
+
+let result2 = sum14(type: 1)(100,20)
+
+print(result1)
+
+print(result2)
+
+/**
+ 30
+ 80
+ */
+print("====================================")
+
+//嵌套函数
+
+func sum15(type: Int)->(Int,Int)->(Int){
+    func subtraction(_ num1: Int,_ num2: Int)->(Int){
+        num1 - num2
+    }
+    func addition(_ num1: Int,_ num2: Int)->(Int){
+        num1 + num2
+    }
+    return type == 0 ? addition : subtraction
+}
+
+
+print("嵌套函数:\(sum15(type: 1)(1,2))")
