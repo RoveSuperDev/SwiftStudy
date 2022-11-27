@@ -64,6 +64,13 @@ var type4 = CustomType4.int(10)
 
 
 
+var type5 = CustomType4.int(1000)
+
+MemoryLayout.size(ofValue: type5)
+MemoryLayout.stride(ofValue: type5)
+MemoryLayout.alignment(ofValue: type5)
+
+
 
 //siz 分配占用的空间的大小 stride实际使用到的空间大小    alignment 对其参数
 
